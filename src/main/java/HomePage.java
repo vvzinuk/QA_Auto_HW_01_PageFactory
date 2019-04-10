@@ -1,5 +1,3 @@
-package Pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -8,6 +6,7 @@ public class HomePage {
 
     WebDriver driver;
     LoginPage loginPage = new LoginPage( this.driver );
+    CategoryPage categoryWomenPage;
 
 
     public HomePage(WebDriver driver) {
@@ -27,4 +26,13 @@ public class HomePage {
         return new HomePage( driver );
     }
 
+    public LoginPage openLoginPage (){
+        driver.findElement(loginButton).click();
+        return new LoginPage(driver);
+    }
+
+    public CategoryPage openCategoryPage (String categoryName){
+        driver.findElement( By.linkText( categoryName ) ).click();
+        return new CategoryPage(driver);
+    }
 }

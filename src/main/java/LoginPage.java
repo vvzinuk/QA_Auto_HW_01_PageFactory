@@ -1,14 +1,14 @@
-package Pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
 
 public class LoginPage {
     static By loginField = By.id("email");
     static By passwdField = By.id("passwd");
+    static By submitButton = By.id( "SubmitLogin" );
+
     static String login = "fake@mail.ua";
     static String passwd = "Fakepass";
-    static By submitButton = By.id( "SubmitLogin" );
 
     WebDriver driver;
 
@@ -24,6 +24,16 @@ public class LoginPage {
     public LoginPage typePasswd (){
         driver.findElement( passwdField ).sendKeys( passwd );
         return this;
+    }
+
+    public LoginPage submit(){
+        driver.findElement( passwdField ).submit();
+        return this;
+    }
+
+    public HomePage openHomePage(){
+        driver.get( " http://automationpractice.com " );
+        return new HomePage(driver);
     }
 
 
