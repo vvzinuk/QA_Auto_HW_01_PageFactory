@@ -1,34 +1,43 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 
 public class LoginPage {
-    static By loginField = By.id("email");
-    static By passwdField = By.id("passwd");
-    static By submitButton = By.id( "SubmitLogin" );
 
-    static String login = "fake@mail.ua";
-    static String passwd = "Fakepass";
+    @FindBy(id = "email")
+    private WebElement loginField;
+    @FindBy(id = "passwd")
+    private WebElement passwdField;
+    @FindBy(id = "SubmitLogin")
+    private WebElement submitButton;
+    @FindBy(css = "a.account")
+    private WebElement accountName;
 
-    WebDriver driver;
+    private static String login = "fake@mail.ua";
+    private static String passwd = "Fakepass";
+    static String nameLastname = "Fake Fakeson";
 
-    public LoginPage(WebDriver driver) {
+    private WebDriver driver;
+
+    LoginPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements( driver,this );
     }
 
-    public LoginPage typeUserName (){
-        driver.findElement( loginField ).sendKeys( login );
+    LoginPage typeUserName(){
+        loginField.sendKeys( login );
         return this;
     }
 
-    public LoginPage typePasswd (){
-        driver.findElement( passwdField ).sendKeys( passwd );
+    LoginPage typePasswd(){
+        passwdField.sendKeys( passwd );
         return this;
     }
 
-    public LoginPage submit(){
-        driver.findElement( passwdField ).submit();
-        return this;
+    void pressSubmitButton(){
+        submitButton.click();
     }
 
     public HomePage openHomePage(){
@@ -36,5 +45,8 @@ public class LoginPage {
         return new HomePage(driver);
     }
 
+    public String getAccountName(){
+        return accountName.getText();
+    }
 
 }
