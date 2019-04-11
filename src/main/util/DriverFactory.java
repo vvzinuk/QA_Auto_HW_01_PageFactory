@@ -5,13 +5,17 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class DriverFactory {
     static WebDriver driver;
 
-    public static WebDriver startBroswer(String browser, String URL){
-        if(browser.equals( "chrome" )){
-            System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
-            driver = new ChromeDriver(  );
-        } else if (browser.equals( "firefox" )){
-            System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver.exe");
-            driver = new FirefoxDriver(  );
+    public static WebDriver startBroswer(Drivers drivers, String URL){
+
+        switch (drivers){
+            case CHROME:
+                System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+                driver = new ChromeDriver(  );
+                break;
+            case FIREFOX:
+                System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver.exe");
+                driver = new FirefoxDriver(  );
+                break;
         }
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();

@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="1" />
         <module name="QA_Auto_HW_01" />
+        <module name="QA_Auto_HW_01_PageFactory" />
       </profile>
     </annotationProcessing>
   </component>

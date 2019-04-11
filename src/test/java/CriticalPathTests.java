@@ -38,7 +38,7 @@ public class CriticalPathTests {
 
     @Before
     public void init(){
-        driver = DriverFactory.startBroswer( "chrome",URL );
+        driver = DriverFactory.startBroswer( Drivers.CHROME,URL );
         homePage = new HomePage( driver );
         loginPage = new LoginPage(driver);
         categoryPage = new CategoryPage(driver);
@@ -50,10 +50,8 @@ public class CriticalPathTests {
     public void checkCart(){
         homePage.openLoginPage();
         loginPage.typeUserName().typePasswd().pressSubmitButton();
-//            Assert.assertEquals( LoginPage.nameLastname, loginPage.getAccountName());
         loginPage.openHomePage();
         homePage.openCategoryPage(HomePage.CATEGORY_WOMEN);
-//            Assert.assertEquals( CategoryPage.womenTitle, driver.getTitle() );
         categoryPage.openProductPage(productName);
         productPage.addToCart();
         wait.until( ExpectedConditions.visibilityOf(productPage.proceedToCheckoutButton));
@@ -66,3 +64,5 @@ public class CriticalPathTests {
         driver.quit();
     }
 }
+//            Assert.assertEquals( LoginPage.nameLastname, loginPage.getAccountName());
+//            Assert.assertEquals( CategoryPage.womenTitle, driver.getTitle() );
